@@ -14,10 +14,8 @@ import Pages.Form.Update exposing (..)
 view : Model -> Html Pages.Form.Update.Msg
 view model =
     div []
-        [ div []
-            [ DatePicker.view model.datePicker
-                |> Html.map ToDatePicker
-            ]
+        [ div [ class "field" ] [ DatePicker.view model.datePicker |> Html.map ToDatePicker ]
+        , Html.map FormMsg (formView model.form)
         ]
 
 
