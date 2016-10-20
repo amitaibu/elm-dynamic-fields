@@ -3,7 +3,7 @@ module Pages.Form.View exposing (view)
 import Html exposing (..)
 import Html.App as Html
 import Html.Attributes exposing (..)
-import Html.Events exposing (onClick)
+import Html.Events exposing (onClick, onSubmit)
 import Form exposing (Form)
 import Form.Input as Input
 import Pages.Form.Model exposing (..)
@@ -35,7 +35,10 @@ formView form =
         baz =
             Form.getFieldAsBool "baz" form
     in
-        Html.form [ class "ui form" ]
+        Html.form
+            [ onSubmit Form.Submit
+            , class "ui form"
+            ]
             [ div [ class "field" ]
                 [ label [] [ text "Bar" ]
                 , Input.textInput bar []
@@ -48,6 +51,14 @@ formView form =
                     , errorFor baz
                     ]
                 ]
-            , button [ onClick Form.Submit ]
+            , button
+                [ onClick AddAnother
+                , class "ui primary button"
+                ]
+                [ text "Submit" ]
+            , button
+                [ onClick Form.Submit
+                , class "ui primary button"
+                ]
                 [ text "Submit" ]
             ]
