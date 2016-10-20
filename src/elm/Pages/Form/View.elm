@@ -1,5 +1,6 @@
 module Pages.Form.View exposing (view)
 
+import DatePicker exposing (..)
 import Html exposing (..)
 import Html.App as Html
 import Html.Attributes exposing (..)
@@ -10,9 +11,14 @@ import Pages.Form.Model exposing (..)
 import Pages.Form.Update exposing (..)
 
 
-view : Model -> Html Msg
+view : Model -> Html Pages.Form.Update.Msg
 view model =
-    Html.map FormMsg (formView model.form)
+    div []
+        [ div []
+            [ DatePicker.view model.datePicker
+                |> Html.map ToDatePicker
+            ]
+        ]
 
 
 formView : Form () DynamicForm -> Html Form.Msg
@@ -51,11 +57,6 @@ formView form =
                     , errorFor baz
                     ]
                 ]
-            , button
-                [ onClick AddAnother
-                , class "ui primary button"
-                ]
-                [ text "Submit" ]
             , button
                 [ onClick Form.Submit
                 , class "ui primary button"

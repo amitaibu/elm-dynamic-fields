@@ -1,5 +1,7 @@
 module Pages.Form.Model exposing (emptyModel, Model, DynamicForm)
 
+import Date exposing (Date, Day(..), day, dayOfWeek, month, year)
+import DatePicker exposing (defaultSettings)
 import Form exposing (Form)
 import Form.Validate as Validate exposing (..)
 
@@ -7,6 +9,7 @@ import Form.Validate as Validate exposing (..)
 type alias DynamicForm =
     { bar : String
     , baz : Bool
+    , date : Date
     }
 
 
@@ -15,20 +18,21 @@ type alias DynamicForm =
 
 
 type alias Model =
-    { dynamic : Int
+    { datePicker : DatePicker.DatePicker
     , form : Form () DynamicForm
     }
 
 
 validate : Validation () DynamicForm
 validate =
-    form2 DynamicForm
+    form3 DynamicForm
         (get "bar" email)
         (get "baz" bool)
+        (get "date" date)
 
 
 emptyModel : Model
 emptyModel =
-    { dynamic = 1
+    { datePicker = fst <| DatePicker.init defaultSettings
     , form = Form.initial [] validate
     }
