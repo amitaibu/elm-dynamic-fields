@@ -17,6 +17,9 @@ delta2url previous current =
         Counter ->
             Just <| UrlChange NewEntry "/#counter"
 
+        Form ->
+            Just <| UrlChange NewEntry "/#form"
+
         Login ->
             Just <| UrlChange NewEntry "/#login"
 
@@ -37,6 +40,9 @@ location2messages location =
 
                 "#counter" ->
                     [ SetActivePage Counter ]
+
+                "#form" ->
+                    [ SetActivePage Form ]
 
                 "#login" ->
                     [ SetActivePage Login ]

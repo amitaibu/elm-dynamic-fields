@@ -9,6 +9,7 @@ import App.Model exposing (..)
 import App.Update exposing (..)
 import User.Model exposing (..)
 import Pages.Counter.View exposing (..)
+import Pages.Form.View exposing (..)
 import Pages.Login.View exposing (..)
 import Pages.MyAccount.View exposing (..)
 import Pages.PageNotFound.View exposing (..)
@@ -29,6 +30,7 @@ view model =
                     , pre [ class "ui padded secondary segment" ]
                         [ div [] [ text <| "activePage: " ++ toString model.activePage ]
                         , div [] [ text <| "pageCounter: " ++ toString model.pageCounter ]
+                        , div [] [ text <| "pageFrom: " ++ toString model.pageForm ]
                         , div [] [ text <| "pageLogin: " ++ toString model.pageLogin ]
                         , div [] [ text <| "user: " ++ toString model.user ]
                         , div [] [ text <| "config: " ++ toString model.config ]
@@ -59,6 +61,11 @@ navbarAnonymous model =
         , onClick <| SetActivePage Counter
         ]
         [ text "Counter" ]
+    , a
+        [ classByPage Form model.activePage
+        , onClick <| SetActivePage Form
+        ]
+        [ text "Form" ]
     , a
         [ classByPage Login model.activePage
         , onClick <| SetActivePage Login
@@ -128,6 +135,9 @@ viewMainContent model =
 
         Counter ->
             Html.map PageCounter (Pages.Counter.View.view model.pageCounter)
+
+        Form ->
+            Html.map PageForm (Pages.Form.View.view model.pageForm)
 
         Login ->
             Html.map PageLogin (Pages.Login.View.view model.user model.pageLogin)
