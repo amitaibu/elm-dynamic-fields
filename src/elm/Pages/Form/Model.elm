@@ -1,7 +1,6 @@
 module Pages.Form.Model exposing (emptyModel, Model, DynamicForm)
 
 import Date exposing (Date, Day(..), day, dayOfWeek, month, year)
-import DatePicker exposing (defaultSettings)
 import Form exposing (Form)
 import Form.Validate as Validate exposing (..)
 
@@ -18,8 +17,7 @@ type alias DynamicForm =
 
 
 type alias Model =
-    { datePicker : DatePicker.DatePicker
-    , form : Form () DynamicForm
+    { form : Form () DynamicForm
     }
 
 
@@ -33,6 +31,5 @@ validate =
 
 emptyModel : Model
 emptyModel =
-    { datePicker = fst <| DatePicker.init defaultSettings
-    , form = Form.initial [] validate
+    { form = Form.initial [] validate
     }
