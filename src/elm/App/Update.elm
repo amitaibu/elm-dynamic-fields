@@ -2,7 +2,6 @@ module App.Update exposing (init, update, Msg(..))
 
 import App.Model exposing (..)
 import Config.Model as Config
-import DatePicker exposing (defaultSettings)
 import Pages.Form.Update exposing (Msg)
 import RemoteData exposing (RemoteData(..), WebData)
 
@@ -16,11 +15,7 @@ type Msg
 
 init : ( Model, Cmd Msg )
 init =
-    let
-        pageFormFx =
-            snd <| Pages.Form.Update.init
-    in
-        emptyModel ! [ Cmd.map PageForm pageFormFx ]
+    emptyModel ! []
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
