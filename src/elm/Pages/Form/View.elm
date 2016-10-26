@@ -13,17 +13,12 @@ import Pages.Form.Update exposing (..)
 view : Model -> Html Pages.Form.Update.Msg
 view model =
     div []
-        [ input
-            [ onInput SetSimpleField
-            , value model.simpleField
-            ]
-            []
-        , Html.map FormMsg (formView model.form)
+        [ (formView model model.form)
         ]
 
 
-formView : Form () DynamicForm -> Html Form.Msg
-formView form =
+formView : Model -> Form () DynamicForm -> Html Msg
+formView model form =
     let
         -- error presenter
         errorFor field =
@@ -43,23 +38,28 @@ formView form =
             Form.getFieldAsBool "baz" form
     in
         Html.form
-            [ onSubmit Form.Submit
+            [ onSubmit (FormMsg Form.Submit)
             , class "ui form"
             ]
             [ div [ class "field" ]
                 [ label [] [ text "Bar" ]
-                , Input.textInput bar []
+                , Html.map FormMsg (Input.textInput bar [])
                 , errorFor bar
                 ]
+            , input
+                [ onInput SetSimpleField
+                , value model.simpleField
+                ]
+                []
             , div [ class "field" ]
                 [ div [ class "ui checkbox" ]
-                    [ Input.checkboxInput baz []
+                    [ Html.map FormMsg (Input.checkboxInput baz [])
                     , label [] [ text "Baz" ]
                     , errorFor baz
                     ]
                 ]
             , button
-                [ onClick Form.Submit
+                [ onClick (FormMsg Form.Submit)
                 , class "ui primary button"
                 ]
                 [ text "Submit" ]
