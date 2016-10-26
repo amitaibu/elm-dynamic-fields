@@ -6,6 +6,7 @@ import Pages.Form.Model as Form exposing (..)
 
 type Msg
     = FormMsg Form.Msg
+    | SetSimpleField String
 
 
 init : ( Model, Cmd Msg )
@@ -18,3 +19,6 @@ update action model =
     case action of
         FormMsg formMsg ->
             { model | form = Form.update formMsg model.form } ! []
+
+        SetSimpleField str ->
+            { model | simpleField = str } ! []

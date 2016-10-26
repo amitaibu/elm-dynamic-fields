@@ -18,6 +18,7 @@ type alias DynamicForm =
 
 type alias Model =
     { form : Form () DynamicForm
+    , simpleField : String
     }
 
 
@@ -32,4 +33,5 @@ validate =
 emptyModel : Model
 emptyModel =
     { form = Form.initial [] validate
+    , simpleField = ""
     }

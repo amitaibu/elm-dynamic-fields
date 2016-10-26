@@ -2,7 +2,6 @@ module App.Update exposing (init, update, Msg(..))
 
 import App.Model exposing (..)
 import Config.Model as Config
-import DatePicker exposing (defaultSettings)
 import Pages.Form.Update exposing (Msg)
 import RemoteData exposing (RemoteData(..), WebData)
 

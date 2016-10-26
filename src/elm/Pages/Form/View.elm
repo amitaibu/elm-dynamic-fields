@@ -3,7 +3,7 @@ module Pages.Form.View exposing (view)
 import Html exposing (..)
 import Html.App as Html
 import Html.Attributes exposing (..)
-import Html.Events exposing (onClick, onSubmit)
+import Html.Events exposing (..)
 import Form exposing (Form)
 import Form.Input as Input
 import Pages.Form.Model exposing (..)
@@ -13,7 +13,12 @@ import Pages.Form.Update exposing (..)
 view : Model -> Html Pages.Form.Update.Msg
 view model =
     div []
-        [ Html.map FormMsg (formView model.form)
+        [ input
+            [ onInput SetSimpleField
+            , value model.simpleField
+            ]
+            []
+        , Html.map FormMsg (formView model.form)
         ]
 
 
