@@ -23,7 +23,7 @@ view model =
                     [ viewMainContent model
                     , pre [ class "ui padded secondary segment" ]
                         [ div [] [ text <| "pageFrom: " ++ toString model.pageForm ]
-                        , div [] [ text <| "config: " ++ toString model.config ]
+                        , div [] [ text <| "autocomplete: " ++ toString model.pageForm.autoState ]
                         ]
                     ]
                 ]

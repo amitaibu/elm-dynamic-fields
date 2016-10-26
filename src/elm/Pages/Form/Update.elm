@@ -67,7 +67,7 @@ update action model =
         SetAutoState autoMsg ->
             let
                 ( newState, maybeMsg ) =
-                    Autocomplete.update updateConfig autoMsg 10 model.autoState (acceptablePeople model)
+                    Autocomplete.update updateConfig autoMsg 100 model.autoState (acceptablePeople model)
 
                 newModel =
                     { model | autoState = newState }
