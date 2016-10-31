@@ -35,6 +35,9 @@ view model =
                 , class "autocomplete-input"
                 , value model.query
                 ]
+                []
+            , div
+                [ class "autocomplete-menu" ]
                 [ (Html.map SetAutoState (Autocomplete.view viewConfig 10 model.autoState (acceptablePeople model))) ]
             , Html.map FormMsg (formView model.form)
             ]
