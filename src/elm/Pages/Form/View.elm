@@ -36,11 +36,23 @@ view model =
                 , value model.query
                 ]
                 []
-            , div
-                [ class "autocomplete-menu" ]
-                [ (Html.map SetAutoState (Autocomplete.view viewConfig 10 model.autoState (acceptablePeople model))) ]
+            , viewMenu model
             , Html.map FormMsg (formView model.form)
             ]
+
+
+viewMenu : Model -> Html Msg
+viewMenu model =
+    let
+        showMenu =
+            not << List.isEmpty <| acceptablePeople model
+    in
+        if (showMenu) then
+            div
+                [ class "autocomplete-menu" ]
+                [ (Html.map SetAutoState (Autocomplete.view viewConfig 10 model.autoState (acceptablePeople model))) ]
+        else
+            div [] []
 
 
 
